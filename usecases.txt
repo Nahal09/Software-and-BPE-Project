@@ -1,3 +1,4 @@
+
 # Restaurant Management System
 
 ## Overview
@@ -20,3 +21,8 @@ This Restaurant Management System is a comprehensive solution for managing the e
   - Track the status of food preparation.
   - Assign tasks to kitchen staff.
   - Ensure timely and accurate preparation of dishes.
+
+- *Delivery Management:*
+  - Manage delivery logistics.
+  - Assign delivery personnel to orders.
+  - Track delivery status and estimated delivery times.
