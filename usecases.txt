@@ -16,3 +16,7 @@ This Restaurant Management System is a comprehensive solution for managing the e
   - Categorize items and set prices.
   - Add new items and remove outdated ones.
 
+- *Food Preparation:*
+  - Track the status of food preparation.
+  - Assign tasks to kitchen staff.
+  - Ensure timely and accurate preparation of dishes.
