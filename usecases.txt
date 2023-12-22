@@ -1,5 +1,18 @@
- -*Delivery Management:*
-  - Manage delivery logistics.
-  - Assign delivery personnel to orders.
-  - Track delivery status and estimated delivery times.
+# Restaurant Management System
+
+## Overview
+
+This Restaurant Management System is a comprehensive solution for managing the entire process of a restaurant, from taking customer orders to designing the menu, preparing food, and finally delivering it. The system is designed to streamline restaurant operations and enhance customer experience.
+
+## Features
+
+- *Order Management:*
+  - Take customer orders efficiently.
+  - View and manage order status.
+  - Update orders as they progress through the system.
+
+- *Menu Design:*
+  - Easily design and update the restaurant menu.
+  - Categorize items and set prices.
+  - Add new items and remove outdated ones.
 
