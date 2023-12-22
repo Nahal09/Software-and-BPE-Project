@@ -1,5 +1,4 @@
- -*Delivery Management:*
-  - Manage delivery logistics.
-  - Assign delivery personnel to orders.
-  - Track delivery status and estimated delivery times.
-
+- *Food Preparation:*
+  - Track the status of food preparation.
+  - Assign tasks to kitchen staff.
+  - Ensure timely and accurate preparation of dishes.
