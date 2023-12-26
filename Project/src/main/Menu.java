@@ -14,7 +14,7 @@ public class Menu {
 
 				while(rs.next())
 				{
-				System.out.println("Menu_ID: " + rs.getInt(1) + " Name: " + rs.getString(2) + " Price: " + rs.getInt(3) + " Category: " + rs.getString(4));
+				System.out.println("Menu_ID: " + rs.getInt(1) + " Name: " + rs.getString(2)+ " Price: " + rs.getInt(3) + " Category: " + rs.getString(4) );
 				}
 				con.close();
 				} catch(Exception e)
