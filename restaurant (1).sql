@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 22, 2023 at 05:45 PM
+-- Generation Time: Dec 27, 2023 at 04:52 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `restaurant`
 --
-CREATE DATABASE IF NOT EXISTS `restaurant` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `restaurant`;
 
 -- --------------------------------------------------------
 
@@ -35,6 +33,13 @@ CREATE TABLE `deliverymanagement` (
   `Delivery_Status` enum('Pending','Out for Delivery','Delivered') DEFAULT 'Pending',
   `Estimated_Delivery_Time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `deliverymanagement`
+--
+
+INSERT INTO `deliverymanagement` (`Delivery_ID`, `Order_ID`, `Delivery_Status`, `Estimated_Delivery_Time`) VALUES
+(1, 1, 'Pending', '2023-12-23 18:44:03');
 
 -- --------------------------------------------------------
 
@@ -73,6 +78,35 @@ CREATE TABLE `menu` (
   `Price` decimal(10,2) DEFAULT NULL,
   `Category` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `menu`
+--
+
+INSERT INTO `menu` (`Menu_ID`, `Name`, `Price`, `Category`) VALUES
+(1, 'burger', '250.00', 'fast food');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `signup`
+--
+
+CREATE TABLE `signup` (
+  `First Name` varchar(50) NOT NULL,
+  `Last Name` varchar(50) NOT NULL,
+  `Email` varchar(50) NOT NULL,
+  `Phone Number` int(11) NOT NULL,
+  `Address` varchar(70) NOT NULL,
+  `Password` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `signup`
+--
+
+INSERT INTO `signup` (`First Name`, `Last Name`, `Email`, `Phone Number`, `Address`, `Password`) VALUES
+('Nahal', 'Junaid', 'nahaljunaid12@gmail.com', 2147483647, 'house no 75 st no 4 KECHS, Karachi', 'nahal1245');
 
 --
 -- Indexes for dumped tables
@@ -125,24 +159,7 @@ ALTER TABLE `foodpreparation`
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `Menu_ID` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `deliverymanagement`
---
-ALTER TABLE `deliverymanagement`
-  ADD CONSTRAINT `deliverymanagement_ibfk_1` FOREIGN KEY (`Delivery_ID`) REFERENCES `deliverypersonnel` (`Delivery_ID`),
-  ADD CONSTRAINT `deliverymanagement_ibfk_2` FOREIGN KEY (`Order_ID`) REFERENCES `customer`.`orders` (`Order_ID`);
-
---
--- Constraints for table `foodpreparation`
---
-ALTER TABLE `foodpreparation`
-  ADD CONSTRAINT `foodpreparation_ibfk_1` FOREIGN KEY (`Order_ID`) REFERENCES `customer`.`orders` (`Order_ID`);
+  MODIFY `Menu_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
