@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 27, 2023 at 04:52 PM
+-- Generation Time: Dec 28, 2023 at 11:07 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `restaurant`
 --
+CREATE DATABASE IF NOT EXISTS `restaurant` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `restaurant`;
 
 -- --------------------------------------------------------
 
