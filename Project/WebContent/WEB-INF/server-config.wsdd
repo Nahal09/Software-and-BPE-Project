@@ -22,6 +22,24 @@
  <ns1:handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
  <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
  <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <ns1:service name="Signup" provider="java:RPC" style="wrapped" use="literal">
+  <ns2:operation name="signup" qname="ns1:signup" returnQName="ns1:signupReturn" returnType="xsd:string" soapAction="" xmlns:ns1="http://main" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
+   <ns2:parameter qname="ns1:FirstName" type="xsd:string"/>
+   <ns2:parameter qname="ns1:LastName" type="xsd:string"/>
+   <ns2:parameter qname="ns1:email" type="xsd:string"/>
+   <ns2:parameter qname="ns1:phn" type="xsd:int"/>
+   <ns2:parameter qname="ns1:add" type="xsd:string"/>
+   <ns2:parameter qname="ns1:pswrd" type="xsd:string"/>
+  </ns2:operation>
+  <ns1:parameter name="allowedMethods" value="signup"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="Signup"/>
+  <ns1:parameter name="className" value="main.Signup"/>
+  <ns1:parameter name="wsdlServicePort" value="Signup"/>
+  <ns1:parameter name="schemaQualified" value="http://main"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://main"/>
+  <ns1:parameter name="wsdlServiceElement" value="SignupService"/>
+ </ns1:service>
  <ns1:service name="AdminService" provider="java:MSG">
   <ns1:parameter name="allowedMethods" value="AdminService"/>
   <ns1:parameter name="enableRemoteAdmin" value="false"/>
@@ -33,9 +51,9 @@
   <ns1:parameter name="className" value="org.apache.axis.Version"/>
  </ns1:service>
  <ns1:service name="Management" provider="java:RPC" style="wrapped" use="literal">
-  <ns2:operation name="main" qname="ns1:main" soapAction="" xmlns:ns1="http://main" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
-   <ns2:parameter qname="ns1:args" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
-  </ns2:operation>
+  <ns1:operation name="main" qname="ns2:main" soapAction="" xmlns:ns2="http://main">
+   <ns1:parameter qname="ns2:args" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
   <ns1:parameter name="allowedMethods" value="main"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="Management"/>
