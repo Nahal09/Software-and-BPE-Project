@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://main" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://main" xmlns:intf="http://main" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://main" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="createInvoice">
+    <complexType>
+     <sequence>
+      <element name="personnelContact" type="xsd:int"/>
+      <element name="foodName" type="xsd:string"/>
+      <element name="foodPrice" type="xsd:int"/>
+      <element name="orderID" type="xsd:int"/>
+      <element name="deliveryID" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="createInvoiceResponse">
+    <complexType/>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="createInvoiceRequest">
+
+      <wsdl:part element="impl:createInvoice" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="createInvoiceResponse">
+
+      <wsdl:part element="impl:createInvoiceResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Invoice">
+
+      <wsdl:operation name="createInvoice">
+
+         <wsdl:input message="impl:createInvoiceRequest" name="createInvoiceRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:createInvoiceResponse" name="createInvoiceResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="InvoiceSoapBinding" type="impl:Invoice">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="createInvoice">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="createInvoiceRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="createInvoiceResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="InvoiceService">
+
+      <wsdl:port binding="impl:InvoiceSoapBinding" name="Invoice">
+
+         <wsdlsoap:address location="http://localhost:8080/Project/services/Invoice"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
