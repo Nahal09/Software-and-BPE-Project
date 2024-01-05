@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+</head>
+<body>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        div {
+            background-color: #CCCCFF;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div id="first">
+<br><br><br><br><br><br><br><br><br>
+    <h2>Signup</h2>
+    <label for="First Name">First Name:</label>
+    <input type="text" id="First Name" name="First Name" required>
+    
+     <label for="Last Name">Last Name:</label>
+    <input type="text" id="Last Name" name="Last Name" required>
+
+    <label for="Email">Email:</label>
+    <input type="Email" id="Email" name="Email" required>
+    
+    <label for="Phone Number">Phone Number:</label>
+    <input type="Phone Number" id="Phone Number" name="Phone Number" required>
+    
+    <label for="Address ">Address:</label>
+    <input type="text" id="Address" name="Address" required>
+
+    <label for="Password">Password:</label>
+    <input type="Password" id="Password" name="Password" required>
+
+    <button type="button" onclick="">Sign Up</button>
+</div>
+
+<script>
+
+const min = 1;
+const max = 100;
+const instanceID = min + Math.random() * (max - min);
+localStorage['instanceID']=instanceID;
+
+Name=document.getElementById('First Name').value;
+Last=document.getElementById('Last Name').value;
+Mail=document.getElementById('Email').value;
+Number=document.getElementById('Phone Number').value;
+location=document.getElementById('Address').value;
+pass=document.getElementById('Password').value;
+
+function getsignup(){}
+
+var myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+
+var raw = '<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+    <Body>
+<signup xmlns="http://main">
+    <FirstName>${Name}</FirstName>
+    <LastName>${Last}</LastName>
+    <email>${Mail}</email>
+    <phn>${Number}</phn>
+    <add>${location}</add>
+    <pswrd>${pass}</pswrd>
+</signup>
+</Body>
+</Envelope>'
+
+var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+
+fetch("http://localhost:8080/Project/services/Signup", requestOptions)
+  .then(response => response.text())
+  .then(result => {
+	  
+  })
+  }
+  .catch(error => console.log('error', error));
+
+</script>
+</body>
+</html>
