@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 06, 2024 at 07:38 AM
+-- Generation Time: Jan 07, 2024 at 08:04 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `restaurant`
 --
+CREATE DATABASE IF NOT EXISTS `restaurant` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `restaurant`;
 
 -- --------------------------------------------------------
 
@@ -117,7 +119,8 @@ CREATE TABLE `signup` (
 --
 
 INSERT INTO `signup` (`First Name`, `Last Name`, `Email`, `Phone Number`, `Address`, `Password`) VALUES
-('Nahal', 'Junaid', 'nahaljunaid12@gmail.com', 2147483647, 'house no 75 st no 4 KECHS, Karachi', 'nahal1245');
+('Nahal', 'Junaid', 'nahaljunaid12@gmail.com', 2147483647, 'house no 75 st no 4 KECHS, Karachi', 'nahal1245'),
+('Maha', 'Ali', 'maha1@gmail.com', 55665, 'khi', '123');
 
 --
 -- Indexes for dumped tables
