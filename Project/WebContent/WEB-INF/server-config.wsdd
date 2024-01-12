@@ -1,0 +1,203 @@
+<ns1:deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java" xmlns:ns1="http://xml.apache.org/axis/wsdd/">
+ <ns1:globalConfiguration>
+  <ns1:parameter name="sendMultiRefs" value="true"/>
+  <ns1:parameter name="disablePrettyXML" value="true"/>
+  <ns1:parameter name="adminPassword" value="admin"/>
+  <ns1:parameter name="attachments.Directory" value="D:\Users\HP\eclipse-workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Project\WEB-INF\attachments"/>
+  <ns1:parameter name="dotNetSoapEncFix" value="true"/>
+  <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <ns1:parameter name="sendXMLDeclaration" value="true"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:requestFlow>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="session"/>
+   </ns1:handler>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="request"/>
+    <ns1:parameter name="extension" value=".jwr"/>
+   </ns1:handler>
+  </ns1:requestFlow>
+ </ns1:globalConfiguration>
+ <ns1:handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <ns1:service name="MenuCreate" provider="java:RPC" style="wrapped" use="literal">
+  <ns2:operation name="addMenuItems" qname="ns1:addMenuItems" returnQName="ns1:addMenuItemsReturn" returnType="xsd:string" soapAction="" xmlns:ns1="http://main" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
+   <ns2:parameter qname="ns1:menuID" type="xsd:int"/>
+   <ns2:parameter qname="ns1:name" type="xsd:string"/>
+   <ns2:parameter qname="ns1:price" type="xsd:int"/>
+   <ns2:parameter qname="ns1:category" type="xsd:string"/>
+  </ns2:operation>
+  <ns1:operation name="removeMenuItems" qname="ns2:removeMenuItems" returnQName="ns2:removeMenuItemsReturn" returnType="xsd:string" soapAction="" xmlns:ns2="http://main" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns2:menuID" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="addMenuItems removeMenuItems"/>
+  <ns1:parameter name="wsdlPortType" value="MenuCreate"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://main"/>
+  <ns1:parameter name="wsdlServicePort" value="MenuCreate"/>
+  <ns1:parameter name="className" value="main.MenuCreate"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://main"/>
+  <ns1:parameter name="wsdlServiceElement" value="MenuCreateService"/>
+ </ns1:service>
+ <ns1:service name="Signup" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="signup" qname="ns3:signup" returnQName="ns3:signupReturn" returnType="xsd:string" soapAction="" xmlns:ns3="http://main" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns3:FirstName" type="xsd:string"/>
+   <ns1:parameter qname="ns3:LastName" type="xsd:string"/>
+   <ns1:parameter qname="ns3:email" type="xsd:string"/>
+   <ns1:parameter qname="ns3:phn" type="xsd:int"/>
+   <ns1:parameter qname="ns3:add" type="xsd:string"/>
+   <ns1:parameter qname="ns3:pswrd" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="signup"/>
+  <ns1:parameter name="wsdlPortType" value="Signup"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://main"/>
+  <ns1:parameter name="wsdlServicePort" value="Signup"/>
+  <ns1:parameter name="className" value="main.Signup"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://main"/>
+  <ns1:parameter name="wsdlServiceElement" value="SignupService"/>
+ </ns1:service>
+ <ns1:service name="AdminService" provider="java:MSG">
+  <ns1:parameter name="allowedMethods" value="AdminService"/>
+  <ns1:parameter name="enableRemoteAdmin" value="false"/>
+  <ns1:parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
+ </ns1:service>
+ <ns1:service name="FOODPRE" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="foodprep" qname="ns4:foodprep" returnQName="ns4:foodprepReturn" returnType="xsd:string" soapAction="" xmlns:ns4="http://main" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns4:PrepID" type="xsd:int"/>
+   <ns1:parameter qname="ns4:OrderID" type="xsd:int"/>
+   <ns1:parameter qname="ns4:Status" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="foodprep"/>
+  <ns1:parameter name="wsdlPortType" value="FOODPRE"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://main"/>
+  <ns1:parameter name="wsdlServicePort" value="FOODPRE"/>
+  <ns1:parameter name="className" value="main.FOODPRE"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://main"/>
+  <ns1:parameter name="wsdlServiceElement" value="FOODPREService"/>
+ </ns1:service>
+ <ns1:service name="ShowMenu" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="getMenuDetails" qname="ns5:getMenuDetails" returnQName="ns5:getMenuDetailsReturn" returnType="ns5:MenuDetails" soapAction="" xmlns:ns5="http://main">
+   <ns1:parameter qname="ns5:menuID" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="getMenuDetails"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="ShowMenu"/>
+  <ns1:parameter name="className" value="main.ShowMenu"/>
+  <ns1:parameter name="wsdlServicePort" value="ShowMenu"/>
+  <ns1:parameter name="schemaQualified" value="http://main"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://main"/>
+  <ns1:parameter name="wsdlServiceElement" value="ShowMenuService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns6:MenuDetails" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:main.MenuDetails" xmlns:ns6="http://main"/>
+ </ns1:service>
+ <ns1:service name="Delivery" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="getDeliveryDetails" qname="ns7:getDeliveryDetails" returnQName="ns7:getDeliveryDetailsReturn" returnType="ns7:DeliveryDetails" soapAction="" xmlns:ns7="http://main">
+   <ns1:parameter qname="ns7:deliveryId" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="getDeliveryDetails"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="Delivery"/>
+  <ns1:parameter name="className" value="main.Delivery"/>
+  <ns1:parameter name="wsdlServicePort" value="Delivery"/>
+  <ns1:parameter name="schemaQualified" value="http://main"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://main"/>
+  <ns1:parameter name="wsdlServiceElement" value="DeliveryService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns8:DeliveryDetails" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:main.DeliveryDetails" xmlns:ns8="http://main"/>
+ </ns1:service>
+ <ns1:service name="Login" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="login" qname="ns9:login" returnQName="ns9:loginReturn" returnType="xsd:string" soapAction="" xmlns:ns9="http://main" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns9:email" type="xsd:string"/>
+   <ns1:parameter qname="ns9:pswrd" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="login"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="Login"/>
+  <ns1:parameter name="className" value="main.Login"/>
+  <ns1:parameter name="wsdlServicePort" value="Login"/>
+  <ns1:parameter name="schemaQualified" value="http://main"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://main"/>
+  <ns1:parameter name="wsdlServiceElement" value="LoginService"/>
+ </ns1:service>
+ <ns1:service name="Management" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="deliverymanagement" qname="ns10:deliverymanagement" returnQName="ns10:deliverymanagementReturn" returnType="xsd:string" soapAction="" xmlns:ns10="http://main" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns10:DeliveryID" type="xsd:int"/>
+   <ns1:parameter qname="ns10:OrderID" type="xsd:int"/>
+   <ns1:parameter qname="ns10:DeliveryStatus" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="deliverymanagement"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="Management"/>
+  <ns1:parameter name="className" value="main.Management"/>
+  <ns1:parameter name="wsdlServicePort" value="Management"/>
+  <ns1:parameter name="schemaQualified" value="http://main"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://main"/>
+  <ns1:parameter name="wsdlServiceElement" value="ManagementService"/>
+ </ns1:service>
+ <ns1:service name="SignupAdmin" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="adminsignup" qname="ns11:adminsignup" returnQName="ns11:adminsignupReturn" returnType="xsd:string" soapAction="" xmlns:ns11="http://main" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns11:FirstName" type="xsd:string"/>
+   <ns1:parameter qname="ns11:LastName" type="xsd:string"/>
+   <ns1:parameter qname="ns11:email" type="xsd:string"/>
+   <ns1:parameter qname="ns11:phn" type="xsd:int"/>
+   <ns1:parameter qname="ns11:add" type="xsd:string"/>
+   <ns1:parameter qname="ns11:pswrd" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="adminsignup"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="SignupAdmin"/>
+  <ns1:parameter name="className" value="main.SignupAdmin"/>
+  <ns1:parameter name="wsdlServicePort" value="SignupAdmin"/>
+  <ns1:parameter name="schemaQualified" value="http://main"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://main"/>
+  <ns1:parameter name="wsdlServiceElement" value="SignupAdminService"/>
+ </ns1:service>
+ <ns1:service name="AddtoCart" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="addtocart" qname="ns12:addtocart" returnQName="ns12:addtocartReturn" returnType="ns12:MenuDetails" soapAction="" xmlns:ns12="http://main">
+   <ns1:parameter qname="ns12:menuID" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="addtocart"/>
+  <ns1:parameter name="wsdlPortType" value="AddtoCart"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://main"/>
+  <ns1:parameter name="wsdlServicePort" value="AddtoCart"/>
+  <ns1:parameter name="className" value="main.AddtoCart"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://main"/>
+  <ns1:parameter name="wsdlServiceElement" value="AddtoCartService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns13:MenuDetails" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:main.MenuDetails" xmlns:ns13="http://main"/>
+ </ns1:service>
+ <ns1:service name="LoginAdmin" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="adminlogin" qname="ns14:adminlogin" returnQName="ns14:adminloginReturn" returnType="xsd:string" soapAction="" xmlns:ns14="http://main" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns14:email" type="xsd:string"/>
+   <ns1:parameter qname="ns14:pswrd" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="adminlogin"/>
+  <ns1:parameter name="wsdlPortType" value="LoginAdmin"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://main"/>
+  <ns1:parameter name="wsdlServicePort" value="LoginAdmin"/>
+  <ns1:parameter name="className" value="main.LoginAdmin"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://main"/>
+  <ns1:parameter name="wsdlServiceElement" value="LoginAdminService"/>
+ </ns1:service>
+ <ns1:transport name="http">
+  <ns1:requestFlow>
+   <ns1:handler type="URLMapper"/>
+   <ns1:handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </ns1:requestFlow>
+  <ns1:parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <ns1:parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </ns1:transport>
+ <ns1:transport name="local">
+  <ns1:responseFlow>
+   <ns1:handler type="LocalResponder"/>
+  </ns1:responseFlow>
+ </ns1:transport>
+</ns1:deployment>

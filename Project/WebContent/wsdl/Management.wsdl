@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://main" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://main" xmlns:intf="http://main" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://main" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="deliverymanagement">
+    <complexType>
+     <sequence>
+      <element name="DeliveryID" type="xsd:int"/>
+      <element name="OrderID" type="xsd:int"/>
+      <element name="DeliveryStatus" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deliverymanagementResponse">
+    <complexType>
+     <sequence>
+      <element name="deliverymanagementReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="deliverymanagementRequest">
+
+      <wsdl:part element="impl:deliverymanagement" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="deliverymanagementResponse">
+
+      <wsdl:part element="impl:deliverymanagementResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Management">
+
+      <wsdl:operation name="deliverymanagement">
+
+         <wsdl:input message="impl:deliverymanagementRequest" name="deliverymanagementRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:deliverymanagementResponse" name="deliverymanagementResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ManagementSoapBinding" type="impl:Management">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="deliverymanagement">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="deliverymanagementRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="deliverymanagementResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ManagementService">
+
+      <wsdl:port binding="impl:ManagementSoapBinding" name="Management">
+
+         <wsdlsoap:address location="http://localhost:8080/Project/services/Management"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

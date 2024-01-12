@@ -4,23 +4,26 @@ import java.sql.*;
 
 public class Management {
 
-	public static void main(String[] args) {
-		try{
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection con =
-			DriverManager.getConnection("jdbc:mysql://localhost:3306/restaurant","root","");
-			Statement stmt=con.createStatement();
-			ResultSet rs=stmt.executeQuery("select * from deliverymanagement");
+	public String deliverymanagement(int DeliveryID, int OrderID, String DeliveryStatus) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/restaurant", "root", "");
+            PreparedStatement stmt = con.prepareStatement("INSERT INTO `deliverymanagement`(`Delivery_ID`, `Order_ID`, `Delivery_Status`) VALUES (?, ?, ?)");
 
-			while(rs.next())
-			{
-			System.out.println("Delivery_ID: " + rs.getInt(1) + " Order_ID: " + rs.getInt(2) + " Delivery_Status: " + rs.getString(3) + " Estimated_Delivery_Time: " + rs.getString(4));
-			}
-			con.close();
-			} catch(Exception e)
-			{
-			System.out.println(e);
-			}
-	}
+            stmt.setInt(1, DeliveryID);
+            stmt.setInt(2, OrderID);
+            stmt.setString(3, DeliveryStatus);
+
+            stmt.executeUpdate();
+            con.close();
+
+            return "Delivery Status Updated!";
+        } 
+        catch (Exception e) {
+            e.printStackTrace(); // print the exception details to the console for debugging
+            return "Delivery Status Failed!";
+        }
+    }
+    
 
 }

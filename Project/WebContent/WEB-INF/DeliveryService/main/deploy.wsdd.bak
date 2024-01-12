@@ -1,0 +1,37 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from DeliveryService WSDL service -->
+
+  <service name="Delivery" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://main"/>
+      <parameter name="wsdlServiceElement" value="DeliveryService"/>
+      <parameter name="schemaQualified" value="http://main"/>
+      <parameter name="wsdlServicePort" value="Delivery"/>
+      <parameter name="className" value="main.DeliverySoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="Delivery"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="getDeliveryDetails" qname="operNS:getDeliveryDetails" xmlns:operNS="http://main" returnQName="retNS:getDeliveryDetailsReturn" xmlns:retNS="http://main" returnType="rtns:DeliveryDetails" xmlns:rtns="http://main" soapAction="" >
+        <parameter qname="pns:deliveryId" xmlns:pns="http://main" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="getDeliveryDetails"/>
+
+      <typeMapping
+        xmlns:ns="http://main"
+        qname="ns:DeliveryDetails"
+        type="java:main.DeliveryDetails"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

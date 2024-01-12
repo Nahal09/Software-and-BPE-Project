@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://main" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://main" xmlns:intf="http://main" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://main" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="adminlogin">
+    <complexType>
+     <sequence>
+      <element name="email" type="xsd:string"/>
+      <element name="pswrd" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="adminloginResponse">
+    <complexType>
+     <sequence>
+      <element name="adminloginReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="adminloginRequest">
+
+      <wsdl:part element="impl:adminlogin" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="adminloginResponse">
+
+      <wsdl:part element="impl:adminloginResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="LoginAdmin">
+
+      <wsdl:operation name="adminlogin">
+
+         <wsdl:input message="impl:adminloginRequest" name="adminloginRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:adminloginResponse" name="adminloginResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="LoginAdminSoapBinding" type="impl:LoginAdmin">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="adminlogin">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="adminloginRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="adminloginResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="LoginAdminService">
+
+      <wsdl:port binding="impl:LoginAdminSoapBinding" name="LoginAdmin">
+
+         <wsdlsoap:address location="http://localhost:8080/Project/services/LoginAdmin"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

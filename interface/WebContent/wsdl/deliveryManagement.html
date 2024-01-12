@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #000;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        color: #ffcc00; /* Yellow */
+    }
+
+    input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 16px;
+        box-sizing: border-box;
+        border: 1px solid #ffcc00; /* Yellow */
+        border-radius: 4px;
+        color: #333; /* Dark Gray */
+    }
+
+    button {
+        background-color: #4caf50; /* Green */
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        border: 2px solid #ffcc00; /* Yellow */
+    }
+
+    button:hover {
+        background-color: #45a049; /* Darker Green */
+    }
+
+    h2 {
+        color: #ffcc00; /* Yellow */
+    }
+
+    a {
+        color: #ffffff; /* Blue */
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+    </style>
+    <title>Delivery Order Status</title>
+</head>
+<body>
+    <div id="deliverystatus">
+        <div class="delivery-form">
+            <h2>Delivery Order Status</h2>
+            <form action="#" method="post">
+                <div class="form-group">
+                    <label for="deliveryId">Delivery ID:</label>
+                    <input type="text" id="deliveryId" name="deliveryId" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="orderId">Order ID:</label>
+                    <input type="text" id="orderId" name="orderId" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="deliveryStatus">Delivery Status:</label>
+                    <select id="deliveryStatus" name="deliveryStatus" required>
+                        <option value="Pending">Pending</option>
+                        <option value="Delivered">Delivered</option>
+                        <option value="Out for Delivery">Out for Delivery</option>
+                    </select>
+                </div>
+<br><br>
+                <button type="button" onclick="DeliveryStatus()"><a href="delivery.html">Delivery Status</a></button>
+            </form>
+        </div>
+    </div>
+    <script>
+        function DeliveryStatus() {
+            var deliveryid = document.getElementById('deliveryId').value;
+            var orderid = document.getElementById('orderId').value;
+            var deliverystatus = document.getElementById('deliveryStatus').value;
+
+            var myHeaders = new Headers();
+            myHeaders.append("SoapAction", "your-soap-action-here"); // Replace with the correct SOAP action
+            myHeaders.append("Content-Type", "text/xml");
+
+            var raw = `<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+                <Body>
+                    <deliverymanagement xmlns="http://main">
+                        <DeliveryID>${deliveryid}</DeliveryID>
+                        <OrderID>${orderid}</OrderID>
+                        <DeliveryStatus>${deliverystatus}</DeliveryStatus>
+                    </deliverymanagement>
+                </Body>
+            </Envelope>`;
+
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
+
+            fetch("http://localhost:8080/Project/services/Management", requestOptions)
+                .then(response => response.text())
+                .then(result => console.log(result))
+                .catch(error => console.log('error', error));
+        }
+    </script>

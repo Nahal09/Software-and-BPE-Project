@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignupAdmin Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        div {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        h2 {
+            color: #4caf50;
+        }
+
+        a {
+            color: #4caf50;
+        }
+
+        a:hover {
+            color: #45a049;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="signup">
+    <br><br><br><br><br><br><br><br><br>
+    <h2>SignupAdmin</h2>
+    <label for="First Name">First Name:</label>
+    <input type="text" id="First Name" name="First Name" required>
+
+    <label for="Last Name">Last Name:</label>
+    <input type="text" id="Last Name" name="Last Name" required>
+
+    <label for="Email">Email:</label>
+    <input type="Email" id="Email" name="Email" required>
+
+    <label for="Phone Number">Phone Number:</label>
+    <input type="tel" id="Phone Number" name="Phone Number" required>
+
+    <label for="Address">Address:</label>
+    <input type="text" id="Address" name="Address" required>
+
+    <label for="Password">Password:</label>
+    <input type="Password" id="Password" name="Password" required>
+
+    <button type="button" onclick="getsignup()">Sign Up</button>
+    <br><br><br><br><br><br><br><br><br>
+</div>
+
+<div id="login" hidden="hidden">
+    <h2>LoginAdmin</h2>
+    <label for="email">Email:</label>
+    <input type="email" id="loginemail" name="email" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="loginpassword" name="password" required>
+
+    <button type="button">Log In</button>
+
+    <div class="signup-link" onclick="getsignup()">Not a member? <a href="#">SignupAdmin now</a></div>
+</div>
+
+<script>
+    function getsignup() {
+        var Name = document.getElementById('First Name').value;
+        var Last = document.getElementById('Last Name').value;
+        var Mail = document.getElementById('Email').value;
+        var Number = document.getElementById('Phone Number').value;
+        var location = document.getElementById('Address').value;
+        var pass = document.getElementById('Password').value;
+        var myHeaders = new Headers();
+        myHeaders.append("SOAPAction", "\"\"");
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = <Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/"><Body><adminsignup xmlns="http://main"><FirstName>${Name}</FirstName><LastName>${Last}</LastName><email>${Mail}</email><phn>${Number}</phn><add>${location}</add><pswrd>${pass}</pswrd></adminsignup></Body></Envelope>;
+        console.log(raw);
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        fetch("http://localhost:8080/Project/services/SignupAdmin", requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+    }
+</script>
+
+</body>
+</html>
