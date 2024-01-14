@@ -10,24 +10,24 @@
     xmlns="http://xml.apache.org/axis/wsdd/"
     xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
 
-  <!-- Services from CreateMenuService WSDL service -->
+  <!-- Services from MenuCreateService WSDL service -->
 
-  <service name="CreateMenu" provider="java:RPC" style="wrapped" use="literal">
+  <service name="MenuCreate" provider="java:RPC" style="wrapped" use="literal">
       <parameter name="wsdlTargetNamespace" value="http://main"/>
-      <parameter name="wsdlServiceElement" value="CreateMenuService"/>
+      <parameter name="wsdlServiceElement" value="MenuCreateService"/>
       <parameter name="schemaQualified" value="http://main"/>
-      <parameter name="wsdlServicePort" value="CreateMenu"/>
-      <parameter name="className" value="main.CreateMenuSoapBindingImpl"/>
-      <parameter name="wsdlPortType" value="CreateMenu"/>
+      <parameter name="wsdlServicePort" value="MenuCreate"/>
+      <parameter name="className" value="main.MenuCreateSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="MenuCreate"/>
       <parameter name="typeMappingVersion" value="1.2"/>
-      <operation name="removeMenuItems" qname="operNS:removeMenuItems" xmlns:operNS="http://main" returnQName="retNS:removeMenuItemsReturn" xmlns:retNS="http://main" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:menuID" xmlns:pns="http://main" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-      </operation>
       <operation name="addMenuItems" qname="operNS:addMenuItems" xmlns:operNS="http://main" returnQName="retNS:addMenuItemsReturn" xmlns:retNS="http://main" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:menuID" xmlns:pns="http://main" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <parameter qname="pns:name" xmlns:pns="http://main" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <parameter qname="pns:price" xmlns:pns="http://main" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <parameter qname="pns:category" xmlns:pns="http://main" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="removeMenuItems" qname="operNS:removeMenuItems" xmlns:operNS="http://main" returnQName="retNS:removeMenuItemsReturn" xmlns:retNS="http://main" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:menuID" xmlns:pns="http://main" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
       </operation>
       <parameter name="allowedMethods" value="addMenuItems removeMenuItems"/>
 

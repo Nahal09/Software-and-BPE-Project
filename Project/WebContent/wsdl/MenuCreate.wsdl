@@ -4,20 +4,6 @@
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://main" xmlns="http://www.w3.org/2001/XMLSchema">
-   <element name="removeMenuItems">
-    <complexType>
-     <sequence>
-      <element name="menuID" type="xsd:int"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="removeMenuItemsResponse">
-    <complexType>
-     <sequence>
-      <element name="removeMenuItemsReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
    <element name="addMenuItems">
     <complexType>
      <sequence>
@@ -32,6 +18,20 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     <complexType>
      <sequence>
       <element name="addMenuItemsReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="removeMenuItems">
+    <complexType>
+     <sequence>
+      <element name="menuID" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="removeMenuItemsResponse">
+    <complexType>
+     <sequence>
+      <element name="removeMenuItemsReturn" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
@@ -70,19 +70,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:portType name="CreateMenu">
-
-      <wsdl:operation name="removeMenuItems">
-
-         <wsdl:input message="impl:removeMenuItemsRequest" name="removeMenuItemsRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:removeMenuItemsResponse" name="removeMenuItemsResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
+   <wsdl:portType name="MenuCreate">
 
       <wsdl:operation name="addMenuItems">
 
@@ -96,29 +84,23 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-   </wsdl:portType>
-
-   <wsdl:binding name="CreateMenuSoapBinding" type="impl:CreateMenu">
-
-      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-
       <wsdl:operation name="removeMenuItems">
 
-         <wsdlsoap:operation soapAction=""/>
+         <wsdl:input message="impl:removeMenuItemsRequest" name="removeMenuItemsRequest">
 
-         <wsdl:input name="removeMenuItemsRequest">
+       </wsdl:input>
 
-            <wsdlsoap:body use="literal"/>
+         <wsdl:output message="impl:removeMenuItemsResponse" name="removeMenuItemsResponse">
 
-         </wsdl:input>
-
-         <wsdl:output name="removeMenuItemsResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
+       </wsdl:output>
 
       </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="MenuCreateSoapBinding" type="impl:MenuCreate">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
 
       <wsdl:operation name="addMenuItems">
 
@@ -138,13 +120,31 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="removeMenuItems">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeMenuItemsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeMenuItemsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
    </wsdl:binding>
 
-   <wsdl:service name="CreateMenuService">
+   <wsdl:service name="MenuCreateService">
 
-      <wsdl:port binding="impl:CreateMenuSoapBinding" name="CreateMenu">
+      <wsdl:port binding="impl:MenuCreateSoapBinding" name="MenuCreate">
 
-         <wsdlsoap:address location="http://localhost:8080/Project/services/CreateMenu"/>
+         <wsdlsoap:address location="http://localhost:8080/Project/services/MenuCreate"/>
 
       </wsdl:port>
 
