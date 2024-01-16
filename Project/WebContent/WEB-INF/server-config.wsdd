@@ -7,8 +7,8 @@
   <ns1:parameter name="dotNetSoapEncFix" value="true"/>
   <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
   <ns1:parameter name="sendXMLDeclaration" value="true"/>
-  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:requestFlow>
    <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
     <ns1:parameter name="scope" value="session"/>
@@ -37,11 +37,11 @@
    <ns2:parameter qname="ns1:deliveryID" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns2:operation>
   <ns1:parameter name="allowedMethods" value="createInvoice"/>
-  <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="Invoice"/>
-  <ns1:parameter name="className" value="main.Invoice"/>
-  <ns1:parameter name="wsdlServicePort" value="Invoice"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="schemaQualified" value="http://main"/>
+  <ns1:parameter name="wsdlServicePort" value="Invoice"/>
+  <ns1:parameter name="className" value="main.Invoice"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://main"/>
   <ns1:parameter name="wsdlServiceElement" value="InvoiceService"/>
  </ns1:service>
@@ -49,19 +49,34 @@
   <ns1:parameter name="allowedMethods" value="getVersion"/>
   <ns1:parameter name="className" value="org.apache.axis.Version"/>
  </ns1:service>
- <ns1:service name="Delivery" provider="java:RPC" style="wrapped" use="literal">
-  <ns1:operation name="getDeliveryDetails" qname="ns2:getDeliveryDetails" returnQName="ns2:getDeliveryDetailsReturn" returnType="ns2:DeliveryDetails" soapAction="" xmlns:ns2="http://main">
-   <ns1:parameter qname="ns2:deliveryId" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+ <ns1:service name="FOODPRE" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="foodprep" qname="ns2:foodprep" returnQName="ns2:foodprepReturn" returnType="xsd:string" soapAction="" xmlns:ns2="http://main" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns2:PrepID" type="xsd:int"/>
+   <ns1:parameter qname="ns2:OrderID" type="xsd:int"/>
+   <ns1:parameter qname="ns2:Status" type="xsd:string"/>
   </ns1:operation>
-  <ns1:parameter name="allowedMethods" value="getDeliveryDetails"/>
+  <ns1:parameter name="allowedMethods" value="foodprep"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
-  <ns1:parameter name="wsdlPortType" value="Delivery"/>
-  <ns1:parameter name="className" value="main.Delivery"/>
-  <ns1:parameter name="wsdlServicePort" value="Delivery"/>
+  <ns1:parameter name="wsdlPortType" value="FOODPRE"/>
+  <ns1:parameter name="className" value="main.FOODPRE"/>
+  <ns1:parameter name="wsdlServicePort" value="FOODPRE"/>
   <ns1:parameter name="schemaQualified" value="http://main"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://main"/>
+  <ns1:parameter name="wsdlServiceElement" value="FOODPREService"/>
+ </ns1:service>
+ <ns1:service name="Delivery" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="getDeliveryDetails" qname="ns3:getDeliveryDetails" returnQName="ns3:getDeliveryDetailsReturn" returnType="ns3:DeliveryDetails" soapAction="" xmlns:ns3="http://main">
+   <ns1:parameter qname="ns3:deliveryId" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="getDeliveryDetails"/>
+  <ns1:parameter name="wsdlPortType" value="Delivery"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://main"/>
+  <ns1:parameter name="wsdlServicePort" value="Delivery"/>
+  <ns1:parameter name="className" value="main.Delivery"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://main"/>
   <ns1:parameter name="wsdlServiceElement" value="DeliveryService"/>
-  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns3:DeliveryDetails" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:main.DeliveryDetails" xmlns:ns3="http://main"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns4:DeliveryDetails" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:main.DeliveryDetails" xmlns:ns4="http://main"/>
  </ns1:service>
  <ns1:transport name="http">
   <ns1:requestFlow>
