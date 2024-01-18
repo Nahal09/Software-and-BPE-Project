@@ -16,14 +16,14 @@ public class Delivery {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/restaurant", "root", "");
             Statement stmt = con.createStatement();
 
-            ResultSet rs = stmt.executeQuery("SELECT * FROM deliverypersonnel where Delivery_ID="+deliveryId);
+            ResultSet rs = stmt.executeQuery("SELECT * FROM deliverymanagement where Delivery_ID="+deliveryId);
             if(rs.next()) {
             	dd = new DeliveryDetails();
             	
             	dd.deliverId = rs.getInt(1);
-            	dd.name = rs.getString(2);
-            	dd.contact = rs.getString(3);
-            	dd.status = rs.getString(4);
+            	dd.orderId = rs.getInt(2);
+            	dd.status = rs.getString(3);
+            	
             }
             rs.close();
             stmt.close();

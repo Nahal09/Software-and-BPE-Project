@@ -7,109 +7,165 @@
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f6f6f6;
+      background-color: #282c34; /* Light Black */
+      color: #fff; /* White */
       margin: 0;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
     }
-    .delivery-form {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 400px;
-        }
 
+    .delivery-form {
+      background-color: #1e1e1e; /* Dark Gray */
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      width: 400px;
+      text-align: center;
+    }
 
     label {
       display: block;
       margin-bottom: 8px;
       font-size: 14px;
-      color: #333;
+      color: #ffd700; /* Golden Yellow */
     }
 
-    input, select {
+    input {
       width: 100%;
       padding: 10px;
       margin-bottom: 16px;
       box-sizing: border-box;
-      border: 1px solid #ccc;
-      border-radius: 4px;
+      border: 1px solid #ffd700; /* Golden Yellow */
+      border-radius: 8px;
+      color: #333;
+      background-color: #282c34; /* Light Black */
     }
 
     button {
-      background-color: #4CAF50;
-      color: white;
+      background-color: #ffd700; /* Golden Yellow */
+      color: #282c34; /* Light Black */
       padding: 12px 20px;
       border: none;
-      border-radius: 4px;
+      border-radius: 25px;
       cursor: pointer;
       font-size: 16px;
       transition: background-color 0.3s ease;
+      border: 2px solid #ffd700; /* Golden Yellow */
+      margin-right: 10px;
     }
 
     button:hover {
-      background-color: #45a049;
+      background-color: #ffcc00; /* Darker Golden Yellow */
+    }
+
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+      background-color: #1e1e1e; /* Dark Gray */
+      color: #fff; /* White */
+    }
+
+    th, td {
+      border: 1px solid #ffd700; /* Golden Yellow */
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #282c34; /* Light Black */
     }
   </style>
 </head>
 <body>
-<div id= "Menu">
-  <div style="text-align: center;">
-    <form>
-      <div class="delivery-form">
-        <label for="menu">Menu ID:</label>
-        <input type="text" id="menu" name="menu" required>
-        
-        <button type="button" onclick="MenuShow()">Menu Items</button>
-        
-        <button type="button" onclick="AddtoCart()">Add to Cart</button>
+  <div id="Menu">
+    <div style="text-align: center;">
+      <form>
+        <div class="delivery-form">
+          <label for="menu">Menu ID:</label>
+          <input type="text" id="menu" name="menu" required>
+          
+          <button type="button" onclick="MenuShow()">Show Menu Items</button>
+          
+          <button type="button" onclick="AddtoCart()">Add to Cart</button>
+
+          <div id="menuDetailsContainer"></div>
+        </div>
+      </form>
+    </div>
   </div>
-  </form>
-</div>
-</div>
   <script>
-    function MenuShow()
-    {
+  function MenuShow() {
+	  id = document.getElementById('menu').value;
 
-    	id = document.getElementById('menu').value
-    	
-    	
-    	
-    	var myHeaders = new Headers();
-    	myHeaders.append("SoapAction", "\"\"");
-    	myHeaders.append("Content-Type", "application/json");
+	  var myHeaders = new Headers();
+	  myHeaders.append("SoapAction", "\"\"");
+	  myHeaders.append("Content-Type", "application/json");
 
-    	var raw = `<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
-    <Body>
-        <getMenuDetails xmlns="http://main">
-            <menuID>${id}</menuID>
-        </getMenuDetails>
-        </Body>
-        </Envelope>`
-    
-    
+	  var raw = `<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+	    <Body>
+	      <getMenuDetails xmlns="http://main">
+	        <menuID>${id}</menuID>
+	      </getMenuDetails>
+	    </Body>
+	  </Envelope>`;
 
-    	var requestOptions = {
-    	  method: 'POST',
-    	  headers: myHeaders,
-    	  body: raw,
-    	  redirect: 'follow'
-    	};
+	  var requestOptions = {
+	    method: 'POST',
+	    headers: myHeaders,
+	    body: raw,
+	    redirect: 'follow'
+	  };
 
-    	fetch("http://localhost:8080/Project/services/ShowMenu", requestOptions)
-    	  .then(response => response.text())
-    	  .then(result => console.log(result))
-    	  .catch(error => console.log('error', error));
+	  fetch("http://localhost:8080/Project/services/ShowMenu", requestOptions)
+	    .then(response => response.text())
+	    .then(xmlString => parseXML(xmlString))
+	    .catch(error => console.log('error', error));
+	}
+
+	function parseXML(xmlString) {
+	  var parser = new DOMParser();
+	  var xmlDoc = parser.parseFromString(xmlString, "text/xml");
+
+	  var menuDetails = {
+	    menuId: xmlDoc.querySelector('menuId').textContent,
+	    name: xmlDoc.querySelector('name').textContent,
+	    price: xmlDoc.querySelector('price').textContent,
+	    category: xmlDoc.querySelector('category').textContent
+	  };
+
+	  displayMenuDetails(menuDetails);
+	}
+
+    function displayMenuDetails(menuDetails) {
+      var menuDetailsContainer = document.getElementById("menuDetailsContainer");
+      menuDetailsContainer.innerHTML = ""; // Clear previous details
+
+      if (menuDetails) {
+        var detailsTable = document.createElement("table");
+        detailsTable.innerHTML = "<tr><th>ID</th><th>Name</th><th>Price</th><th>Category</th></tr>";
+        
+        var row = detailsTable.insertRow();
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+
+        cell1.innerHTML = menuDetails.menuId;
+        cell2.innerHTML = menuDetails.name;
+        cell3.innerHTML = menuDetails.price;
+        cell4.innerHTML = menuDetails.category;
+
+        menuDetailsContainer.appendChild(detailsTable);
+      } else {
+        menuDetailsContainer.innerHTML = "Menu not found with ID: " + id;
+      }
     }
-    
-    
-    function AddtoCart()
-    {
 
-    	id = document.getElementById('menu').value
+    function AddtoCart() {
+        id = document.getElementById('menu').value
     	
     	
     	
@@ -138,7 +194,8 @@
     	  .then(response => response.text())
     	  .then(result => console.log(result))
     	  .catch(error => console.log('error', error));
+
     }
-</script>
+  </script>
 </body>
 </html>

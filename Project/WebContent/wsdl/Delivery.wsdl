@@ -21,8 +21,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <complexType name="DeliveryDetails">
     <sequence>
      <element name="deliverId" type="xsd:int"/>
-     <element name="name" nillable="true" type="xsd:string"/>
-     <element name="contact" nillable="true" type="xsd:string"/>
+     <element name="orderId" type="xsd:int"/>
      <element name="status" nillable="true" type="xsd:string"/>
     </sequence>
    </complexType>

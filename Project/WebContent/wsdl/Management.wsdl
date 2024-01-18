@@ -4,30 +4,36 @@
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://main" xmlns="http://www.w3.org/2001/XMLSchema">
-   <element name="main">
+   <element name="deliverymanagemnt">
     <complexType>
      <sequence>
-      <element maxOccurs="unbounded" name="args" type="xsd:string"/>
+      <element name="DeliveryID" type="xsd:int"/>
+      <element name="OrderID" type="xsd:int"/>
+      <element name="DeliveryStatus" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
-   <element name="mainResponse">
-    <complexType/>
+   <element name="deliverymanagemntResponse">
+    <complexType>
+     <sequence>
+      <element name="deliverymanagemntReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
    </element>
   </schema>
  </wsdl:types>
 
-   <wsdl:message name="mainResponse">
+   <wsdl:message name="deliverymanagemntResponse">
 
-      <wsdl:part element="impl:mainResponse" name="parameters">
+      <wsdl:part element="impl:deliverymanagemntResponse" name="parameters">
 
       </wsdl:part>
 
    </wsdl:message>
 
-   <wsdl:message name="mainRequest">
+   <wsdl:message name="deliverymanagemntRequest">
 
-      <wsdl:part element="impl:main" name="parameters">
+      <wsdl:part element="impl:deliverymanagemnt" name="parameters">
 
       </wsdl:part>
 
@@ -35,13 +41,13 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    <wsdl:portType name="Management">
 
-      <wsdl:operation name="main">
+      <wsdl:operation name="deliverymanagemnt">
 
-         <wsdl:input message="impl:mainRequest" name="mainRequest">
+         <wsdl:input message="impl:deliverymanagemntRequest" name="deliverymanagemntRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:mainResponse" name="mainResponse">
+         <wsdl:output message="impl:deliverymanagemntResponse" name="deliverymanagemntResponse">
 
        </wsdl:output>
 
@@ -53,17 +59,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
 
-      <wsdl:operation name="main">
+      <wsdl:operation name="deliverymanagemnt">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="mainRequest">
+         <wsdl:input name="deliverymanagemntRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="mainResponse">
+         <wsdl:output name="deliverymanagemntResponse">
 
             <wsdlsoap:body use="literal"/>
 

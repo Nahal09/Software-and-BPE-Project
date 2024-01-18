@@ -7,27 +7,29 @@
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f6f6f6;
+      background-color: #1a1a1a; /* Light Black */
       margin: 0;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      color: #fff; /* White */
     }
-    .delivery-form {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 400px;
-        }
 
+    .delivery-form {
+      background-color: #292929; /* Dark Gray */
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      width: 400px;
+      text-align: center;
+    }
 
     label {
       display: block;
       margin-bottom: 8px;
       font-size: 14px;
-      color: #333;
+      color: #ffcc00; /* Golden Yellow */
     }
 
     input, select {
@@ -35,121 +37,125 @@
       padding: 10px;
       margin-bottom: 16px;
       box-sizing: border-box;
-      border: 1px solid #ccc;
-      border-radius: 4px;
+      border: 1px solid #ffcc00; /* Golden Yellow */
+      border-radius: 8px;
+      color: #333;
+      background-color: #1a1a1a; /* Light Black */
     }
 
     button {
-      background-color: #4CAF50;
-      color: white;
+      background-color: #ffcc00; /* Golden Yellow */
+      color: #1a1a1a; /* Light Black */
       padding: 12px 20px;
       border: none;
-      border-radius: 4px;
+      border-radius: 25px;
       cursor: pointer;
       font-size: 16px;
       transition: background-color 0.3s ease;
+      border: 2px solid #ffcc00; /* Golden Yellow */
     }
 
     button:hover {
-      background-color: #45a049;
+      background-color: #ff9900; /* Darker Golden Yellow */
     }
   </style>
 </head>
 <body>
-<div id= "Menu">
-  <div style="text-align: center;">
-    <form>
-      <div class="delivery-form">
-        <label for="menu">Menu ID:</label>
-        <input type="text" id="menu" name="menu" required>
-      
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
-      
-        <label for="price">Price:</label>
-        <input type="text" id="price" name="price" required>
-     
-        <label for="category">Category:</label>
-        <input type="text" id="category" name="category" required>
-          
-        <button type="button" onclick="AddItems()">Add Items</button>
+  <div id="Menu">
+    <div style="text-align: center;">
+      <form>
+        <div class="delivery-form">
+          <label for="menu">Menu ID:</label>
+          <input type="text" id="menu" name="menu" required>
         
-        <button type="button" onclick="RemoveItems()">Remove Items</button>
-      </div>
-    </form>
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required>
+        
+          <label for="price">Price:</label>
+          <input type="text" id="price" name="price" required>
+       
+          <label for="category">Category:</label>
+          <input type="text" id="category" name="category" required>
+            
+          <button type="button" onclick="AddItems()">Add Items</button>
+          
+          <button type="button" onclick="RemoveItems()">Remove Items</button>
+        </div>
+      </form>
+    </div>
   </div>
-</div>
+
   <script>
-    function AddItems()
-    {
-    	//const min = 1;
-    	//const max = 100;
-    	//const instanceID = min + Math.random() * (max - min);
-    	//localStorage['menuID'] = id;
-    	id = document.getElementById('menu').value
-    	Name = document.getElementById('name').value
-    	Price = document.getElementById('price').value
-    	Category = document.getElementById('category').value
-    	
-    	
-    	
-    	var myHeaders = new Headers();
-    	myHeaders.append("SoapAction", "\"\"");
-    	myHeaders.append("Content-Type", "application/json");
+  function AddItems()
+  {
+  	//const min = 1;
+  	//const max = 100;
+  	//const instanceID = min + Math.random() * (max - min);
+  	//localStorage['menuID'] = id;
+  	id = document.getElementById('menu').value
+  	Name = document.getElementById('name').value
+  	Price = document.getElementById('price').value
+  	Category = document.getElementById('category').value
+  	
+  	
+  	
+  	var myHeaders = new Headers();
+  	myHeaders.append("SoapAction", "\"\"");
+  	myHeaders.append("Content-Type", "application/json");
 
-    	var raw = `<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
-    	    <Body>
-            <addMenuItems xmlns="http://main">
-                <menuID>${id}</menuID>
-                <name>${Name}</name>
-                <price>${Price}</price>
-                <category>${Category}</category>
-            </addMenuItems>
-        </Body>
-    </Envelope>`
+  	var raw = `<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+  	    <Body>
+          <addMenuItems xmlns="http://main">
+              <menuID>${id}</menuID>
+              <name>${Name}</name>
+              <price>${Price}</price>
+              <category>${Category}</category>
+          </addMenuItems>
+      </Body>
+  </Envelope>`
 
-    	var requestOptions = {
-    	  method: 'POST',
-    	  headers: myHeaders,
-    	  body: raw,
-    	  redirect: 'follow'
-    	};
+  	var requestOptions = {
+  	  method: 'POST',
+  	  headers: myHeaders,
+  	  body: raw,
+  	  redirect: 'follow'
+  	};
 
-    	fetch("http://localhost:8080/Project/services/MenuCreate", requestOptions)
-    	  .then(response => response.text())
-    	  .then(result => console.log(result))
-    	  .catch(error => console.log('error', error));
-    }
-    function RemoveItems()
-    {
-    	//menuID = localStorage['menuID'];
-    	
-    	id = document.getElementById('menu').value
-    	
-    	var myHeaders = new Headers();
-    	myHeaders.append("SoapAction", "\"\"");
-    	myHeaders.append("Content-Type", "application/json");
+  	fetch("http://localhost:8080/Project/services/MenuCreate", requestOptions)
+  	  .then(response => response.text())
+  	  .then(result => console.log(result))
+  	  .catch(error => console.log('error', error));
+  }
+  function RemoveItems()
+  {
+  	//menuID = localStorage['menuID'];
+  	
+  	id = document.getElementById('menu').value
+  	
+  	var myHeaders = new Headers();
+  	myHeaders.append("SoapAction", "\"\"");
+  	myHeaders.append("Content-Type", "application/json");
 
-    	var raw = `<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
-    	    <Body>
-            <removeMenuItems xmlns="http://main">
-                <menuID>${id}</menuID>
-            </removeMenuItems>
-        </Body>
-    </Envelope>`
+  	var raw = `<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+  	    <Body>
+          <removeMenuItems xmlns="http://main">
+              <menuID>${id}</menuID>
+          </removeMenuItems>
+      </Body>
+  </Envelope>`
 
-    	var requestOptions = {
-    	  method: 'POST',
-    	  headers: myHeaders,
-    	  body: raw,
-    	  redirect: 'follow'
-    	};
+  	var requestOptions = {
+  	  method: 'POST',
+  	  headers: myHeaders,
+  	  body: raw,
+  	  redirect: 'follow'
+  	};
 
-    	fetch("http://localhost:8080/Project/services/MenuCreate", requestOptions)
-    	  .then(response => response.text())
-    	  .then(result => console.log(result))
-    	  .catch(error => console.log('error', error));
-    }
+  	fetch("http://localhost:8080/Project/services/MenuCreate", requestOptions)
+  	  .then(response => response.text())
+  	  .then(result => console.log(result))
+  	  .catch(error => console.log('error', error));
+  }
   </script>
 </body>
 </html>

@@ -24,7 +24,7 @@ public class ShowMenu {
             	md.price = rs.getString(3);
             	md.category = rs.getString(4);
             }
-            System.out.println("Menu_ID: " + rs.getInt(1) + " Name: " + rs.getString(2) + " Price: " + rs.getInt(3) + " Category: " + rs.getString(4));
+            
             rs.close();
             stmt.close();
             con.close();
