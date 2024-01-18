@@ -11,12 +11,12 @@ public class Restaurant {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/restaurant", "root", "");
             Statement stmt = con.createStatement();
 
-            ResultSet rs = stmt.executeQuery("SELECT * FROM deliverymanagement");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM deliverypersonnel");
             while (rs.next()) {
                 System.out.println("Delivery_ID" + rs.getInt(1) +
-                                   " Order_ID: " + rs.getInt(1) +
-                                   " Delivery_Status " + rs.getString(3)+
-                                   " Delivery_Status " + rs.getString(3));
+                                   " 	Name: " + rs.getString(2) +
+                                   " Contact " + rs.getString(3)+
+                                   " Status " + rs.getString(4));
             }
             rs.close();
             stmt.close();
