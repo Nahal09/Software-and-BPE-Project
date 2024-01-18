@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 22, 2023 at 05:45 PM
+-- Generation Time: Jan 18, 2024 at 10:04 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -26,6 +26,40 @@ USE `restaurant`;
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `adminlogin`
+--
+
+CREATE TABLE `adminlogin` (
+  `email` varchar(50) NOT NULL,
+  `pswrd` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `adminsignup`
+--
+
+CREATE TABLE `adminsignup` (
+  `First_Name` varchar(50) NOT NULL,
+  `Last_Name` varchar(50) NOT NULL,
+  `Email` varchar(50) NOT NULL,
+  `Phone_Number` int(11) NOT NULL,
+  `Address` varchar(50) NOT NULL,
+  `Password` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `adminsignup`
+--
+
+INSERT INTO `adminsignup` (`First_Name`, `Last_Name`, `Email`, `Phone_Number`, `Address`, `Password`) VALUES
+('maha', 'ahmed', 'maha12@gmail.com', 23455, 'kechs', '123'),
+('nahal', 'junaid', 'nahaljunaid03@gmail.com', 25436, '123 street', '123');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `deliverymanagement`
 --
 
@@ -35,6 +69,13 @@ CREATE TABLE `deliverymanagement` (
   `Delivery_Status` enum('Pending','Out for Delivery','Delivered') DEFAULT 'Pending',
   `Estimated_Delivery_Time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `deliverymanagement`
+--
+
+INSERT INTO `deliverymanagement` (`Delivery_ID`, `Order_ID`, `Delivery_Status`, `Estimated_Delivery_Time`) VALUES
+(1, 1, 'Pending', '2023-12-23 18:44:03');
 
 -- --------------------------------------------------------
 
@@ -61,6 +102,26 @@ CREATE TABLE `foodpreparation` (
   `Preparation_Status` enum('Pending','In Progress','Completed') DEFAULT 'Pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `foodpreparation`
+--
+
+INSERT INTO `foodpreparation` (`Prep_ID`, `Order_ID`, `Preparation_Status`) VALUES
+(1, 1, 'Pending'),
+(2, 2, ''),
+(3, 3, 'In Progress');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `login`
+--
+
+CREATE TABLE `login` (
+  `email` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 -- --------------------------------------------------------
 
 --
@@ -73,6 +134,43 @@ CREATE TABLE `menu` (
   `Price` decimal(10,2) DEFAULT NULL,
   `Category` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `menu`
+--
+
+INSERT INTO `menu` (`Menu_ID`, `Name`, `Price`, `Category`) VALUES
+(2, 'beef burger ', '350.00', 'fast food  '),
+(3, 'large pizza', '2000.00', 'fast food'),
+(10, 'lasagna', '1100.00', 'fast');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `signup`
+--
+
+CREATE TABLE `signup` (
+  `First Name` varchar(50) NOT NULL,
+  `Last Name` varchar(50) NOT NULL,
+  `Email` varchar(50) NOT NULL,
+  `Phone Number` int(11) NOT NULL,
+  `Address` varchar(70) NOT NULL,
+  `Password` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `signup`
+--
+
+INSERT INTO `signup` (`First Name`, `Last Name`, `Email`, `Phone Number`, `Address`, `Password`) VALUES
+('Nahal', 'Junaid', 'nahaljunaid12@gmail.com', 2147483647, 'house no 75 st no 4 KECHS, Karachi', 'nahal1245'),
+('Maha', 'Ali', 'maha1@gmail.com', 55665, 'khi', '123'),
+('maha ', 'ali', 'maha12@gmail.com', 283902, 'kechs ', '123'),
+('maha ', 'ali', 'maha12@gmail.com', 283902, 'kechs ', '123'),
+('maha', 'ali', 'maha12@gmail.com', 235364, 'kechs', '123'),
+('muhammad', 'ahmed', 'ahmed12@gmail.com', 23455, 'Tariq Bin Ziyad', '123'),
+('arooba ', 'junaid', 'arooba12@gmail.com', 234556, 'malir ', '124');
 
 --
 -- Indexes for dumped tables
@@ -119,30 +217,13 @@ ALTER TABLE `deliverypersonnel`
 -- AUTO_INCREMENT for table `foodpreparation`
 --
 ALTER TABLE `foodpreparation`
-  MODIFY `Prep_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Prep_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `Menu_ID` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `deliverymanagement`
---
-ALTER TABLE `deliverymanagement`
-  ADD CONSTRAINT `deliverymanagement_ibfk_1` FOREIGN KEY (`Delivery_ID`) REFERENCES `deliverypersonnel` (`Delivery_ID`),
-  ADD CONSTRAINT `deliverymanagement_ibfk_2` FOREIGN KEY (`Order_ID`) REFERENCES `customer`.`orders` (`Order_ID`);
-
---
--- Constraints for table `foodpreparation`
---
-ALTER TABLE `foodpreparation`
-  ADD CONSTRAINT `foodpreparation_ibfk_1` FOREIGN KEY (`Order_ID`) REFERENCES `customer`.`orders` (`Order_ID`);
+  MODIFY `Menu_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
