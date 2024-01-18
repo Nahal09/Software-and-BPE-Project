@@ -20,12 +20,12 @@
       <parameter name="className" value="main.ManagementSoapBindingImpl"/>
       <parameter name="wsdlPortType" value="Management"/>
       <parameter name="typeMappingVersion" value="1.2"/>
-      <operation name="deliverymanagemnt" qname="operNS:deliverymanagemnt" xmlns:operNS="http://main" returnQName="retNS:deliverymanagemntReturn" xmlns:retNS="http://main" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      <operation name="deliverymanagement" qname="operNS:deliverymanagement" xmlns:operNS="http://main" returnQName="retNS:deliverymanagementReturn" xmlns:retNS="http://main" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:DeliveryID" xmlns:pns="http://main" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <parameter qname="pns:OrderID" xmlns:pns="http://main" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <parameter qname="pns:DeliveryStatus" xmlns:pns="http://main" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
       </operation>
-      <parameter name="allowedMethods" value="deliverymanagemnt"/>
+      <parameter name="allowedMethods" value="deliverymanagement"/>
 
   </service>
 </deployment>

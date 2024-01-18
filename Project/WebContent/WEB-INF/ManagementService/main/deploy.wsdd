@@ -10,12 +10,12 @@
       <parameter name="className" value="main.Management"/>
       <parameter name="wsdlPortType" value="Management"/>
       <parameter name="typeMappingVersion" value="1.2"/>
-      <operation xmlns:operNS="http://main" xmlns:retNS="http://main" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="deliverymanagemnt" qname="operNS:deliverymanagemnt" returnQName="retNS:deliverymanagemntReturn" returnType="rtns:string" soapAction="">
+      <operation xmlns:operNS="http://main" xmlns:retNS="http://main" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="deliverymanagement" qname="operNS:deliverymanagement" returnQName="retNS:deliverymanagementReturn" returnType="rtns:string" soapAction="">
         <parameter xmlns:pns="http://main" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:DeliveryID" type="tns:int"/>
         <parameter xmlns:pns="http://main" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:OrderID" type="tns:int"/>
         <parameter xmlns:pns="http://main" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:DeliveryStatus" type="tns:string"/>
       </operation>
-      <parameter name="allowedMethods" value="deliverymanagemnt"/>
+      <parameter name="allowedMethods" value="deliverymanagement"/>
 
   </service>
 </deployment>

@@ -4,7 +4,7 @@
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://main" xmlns="http://www.w3.org/2001/XMLSchema">
-   <element name="deliverymanagemnt">
+   <element name="deliverymanagement">
     <complexType>
      <sequence>
       <element name="DeliveryID" type="xsd:int"/>
@@ -13,27 +13,27 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
-   <element name="deliverymanagemntResponse">
+   <element name="deliverymanagementResponse">
     <complexType>
      <sequence>
-      <element name="deliverymanagemntReturn" type="xsd:string"/>
+      <element name="deliverymanagementReturn" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
   </schema>
  </wsdl:types>
 
-   <wsdl:message name="deliverymanagemntResponse">
+   <wsdl:message name="deliverymanagementRequest">
 
-      <wsdl:part element="impl:deliverymanagemntResponse" name="parameters">
+      <wsdl:part element="impl:deliverymanagement" name="parameters">
 
       </wsdl:part>
 
    </wsdl:message>
 
-   <wsdl:message name="deliverymanagemntRequest">
+   <wsdl:message name="deliverymanagementResponse">
 
-      <wsdl:part element="impl:deliverymanagemnt" name="parameters">
+      <wsdl:part element="impl:deliverymanagementResponse" name="parameters">
 
       </wsdl:part>
 
@@ -41,13 +41,13 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    <wsdl:portType name="Management">
 
-      <wsdl:operation name="deliverymanagemnt">
+      <wsdl:operation name="deliverymanagement">
 
-         <wsdl:input message="impl:deliverymanagemntRequest" name="deliverymanagemntRequest">
+         <wsdl:input message="impl:deliverymanagementRequest" name="deliverymanagementRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:deliverymanagemntResponse" name="deliverymanagemntResponse">
+         <wsdl:output message="impl:deliverymanagementResponse" name="deliverymanagementResponse">
 
        </wsdl:output>
 
@@ -59,17 +59,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
 
-      <wsdl:operation name="deliverymanagemnt">
+      <wsdl:operation name="deliverymanagement">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="deliverymanagemntRequest">
+         <wsdl:input name="deliverymanagementRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="deliverymanagemntResponse">
+         <wsdl:output name="deliverymanagementResponse">
 
             <wsdlsoap:body use="literal"/>
 
