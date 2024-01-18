@@ -9,7 +9,7 @@
 <undeployment
     xmlns="http://xml.apache.org/axis/wsdd/">
 
-  <!-- Services from ManagementService WSDL service -->
+  <!-- Services from ShowMenuService WSDL service -->
 
-  <service name="Management"/>
+  <service name="ShowMenu"/>
 </undeployment>

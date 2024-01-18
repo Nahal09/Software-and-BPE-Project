@@ -9,7 +9,7 @@
 <undeployment
     xmlns="http://xml.apache.org/axis/wsdd/">
 
-  <!-- Services from LoginService WSDL service -->
+  <!-- Services from AddtoCartService WSDL service -->
 
-  <service name="Login"/>
+  <service name="AddtoCart"/>
 </undeployment>
