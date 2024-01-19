@@ -3,61 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #000;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
+     <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #000;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
 
-        .delivery-form {
-            background-color: #2c3e50;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-            width: 400px;
-            color: #fff;
-        }
 
-        .form-group {
-            margin-bottom: 16px;
-        }
+    label {
+        display: block;
+        margin-bottom: 8px;
+        color: #ffcc00; /* Yellow */
+    }
 
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #ecf0f1;
-        }
+    input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 16px;
+        box-sizing: border-box;
+        border: 1px solid #ffcc00; /* Yellow */
+        border-radius: 4px;
+        color: #333; /* Dark Gray */
+    }
 
-        input, select {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            background-color: #34495e;
-            color: #ecf0f1;
-        }
+    button {
+        background-color: #4caf50; /* Green */
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        border: 2px solid #ffcc00; /* Yellow */
+    }
 
-        button {
-            background-color: #2ecc71;
-            color: #fff;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
+    button:hover {
+        background-color: #45a049; /* Darker Green */
+    }
 
-        button:hover {
-            background-color: #27ae60;
-        }
+    h2 {
+        color: #ffcc00; /* Yellow */
+    }
+
+    a {
+        color: #ffffff; /* Blue */
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
     </style>
     <title>Delivery Order Status</title>
 </head>
@@ -84,43 +85,41 @@
                         <option value="Out for Delivery">Out for Delivery</option>
                     </select>
                 </div>
-
-                <button type="button" onclick="DeliveryStatus()">Delivery Status</button>
+<br><br>
+                <button type="button" onclick="DeliveryStatus()"><a href="delivery.html">Delivery Status</a></button>
             </form>
         </div>
     </div>
     <script>
-    function DeliveryStatus() {
-        deliveryid = document.getElementById('deliveryId').value;
-        orderid = document.getElementById('orderId').value;
-        deliverystatus = document.getElementById('deliveryStatus').value;
+        function DeliveryStatus() {
+            var deliveryid = document.getElementById('deliveryId').value;
+            var orderid = document.getElementById('orderId').value;
+            var deliverystatus = document.getElementById('deliveryStatus').value;
 
-        var myHeaders = new Headers();
-        myHeaders.append("SoapAction", "\"\"");
-        myHeaders.append("Content-Type", "application/json");
+            var myHeaders = new Headers();
+            myHeaders.append("SoapAction", "your-soap-action-here"); // Replace with the correct SOAP action
+            myHeaders.append("Content-Type", "text/xml");
 
-        var raw = `<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
-            <Body>
-                <deliverymanagement xmlns="http://main">
-                    <DeliveryID>${deliveryid}</DeliveryID>
-                    <OrderID>${orderid}</OrderID>
-                    <DeliveryStatus>${deliverystatus}</DeliveryStatus>
-                </deliverymanagement>
-            </Body>
-        </Envelope>`;
+            var raw = `<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+                <Body>
+                    <deliverymanagement xmlns="http://main">
+                        <DeliveryID>${deliveryid}</DeliveryID>
+                        <OrderID>${orderid}</OrderID>
+                        <DeliveryStatus>${deliverystatus}</DeliveryStatus>
+                    </deliverymanagement>
+                </Body>
+            </Envelope>`;
 
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
-        };
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
 
-        fetch("http://localhost:8080/Project/services/Management", requestOptions)
-            .then(response => response.text())
-            .then(result => console.log(result))
-            .catch(error => console.log('error', error));
-    }
+            fetch("http://localhost:8080/Project/services/Management", requestOptions)
+                .then(response => response.text())
+                .then(result => console.log(result))
+                .catch(error => console.log('error', error));
+        }
     </script>
-</body>
-</html>

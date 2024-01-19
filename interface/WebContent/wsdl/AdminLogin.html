@@ -4,9 +4,9 @@
     <meta charset="ISO-8859-1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    <style>
+     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, sans-serif;
             background-color: #000;
             color: #fff;
             margin: 0;
@@ -18,7 +18,8 @@
         }
 
         div {
-            background-color: #333;
+            background-color: #1a1a1a;
+            color: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
@@ -29,7 +30,6 @@
         label {
             display: block;
             margin-bottom: 8px;
-            color: #fff;
         }
 
         input {
@@ -39,8 +39,6 @@
             box-sizing: border-box;
             border: 1px solid #ccc;
             border-radius: 4px;
-            background-color: #444;
-            color: #fff;
         }
 
         button {
@@ -60,25 +58,54 @@
         h2 {
             color: #4caf50;
         }
+
+        a {
+            color: #FFFFFF;
+        }
+
+        a:hover {
+            color: #FFFFFF;
+        }
     </style>
 </head>
 <body>
 
-<div id="first">
-    <h2>Log-in</h2>
-    <label for="AdminName">Admin Name:</label>
-    <input type="text" id="AdminName" name="AdminName" required>
+<div id="login">
+    <h2>LoginAdmin</h2>
+    <label for="email">Email:</label>
+    <input type="email" id="loginemail" name="email" required>
 
-    <label for="Password">Password:</label>
-    <input type="Password" id="Password" name="Password" required>
+    <label for="password">Password:</label>
+    <input type="password" id="loginpassword" name="password" required>
 
-    <button type="button" onclick="adminLogin()">Admin Login</button>
+<button type="button" onclick="getlogin()">
+    <a href="menu.html">Log In</a>
+</button>
+    <div class="signup-link" onclick="getsignup()">Not a member? <a href="AdminSignup.html">Signup Admin now</a></div>
 </div>
 
 <script>
-    function adminLogin() {
-        // Add your login logic here
-    }
+function getlogin(){
+    var s_email = document.getElementById('loginemail').value;
+    var s_password = document.getElementById('loginpassword').value;
+
+    var myHeaders = new Headers();
+    myHeaders.append("SOAPAction", "");
+
+    var raw = `<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/"><Body><login xmlns="http://main"><email>${s_email}</email><pswrd>${s_password}</pswrd></login></Body></Envelope>`;
+
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+
+    fetch("http://localhost:8080/Project/services/Login?SOAPAction=\"\"", requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
+}
 </script>
 
 </body>

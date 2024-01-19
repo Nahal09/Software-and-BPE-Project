@@ -5,59 +5,63 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Menu</title>
   <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #282c34; /* Light Black */
-      color: #fff; /* White */
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+        body {
+        font-family: Arial, sans-serif;
+        background-color: #000;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
     }
 
     .delivery-form {
-      background-color: #1e1e1e; /* Dark Gray */
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-      width: 400px;
       text-align: center;
     }
 
     label {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 14px;
-      color: #ffd700; /* Golden Yellow */
+        display: block;
+        margin-bottom: 8px;
+        color: #ffcc00; /* Yellow */
     }
 
     input {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 16px;
-      box-sizing: border-box;
-      border: 1px solid #ffd700; /* Golden Yellow */
-      border-radius: 8px;
-      color: #333;
-      background-color: #282c34; /* Light Black */
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 16px;
+        box-sizing: border-box;
+        border: 1px solid #ffcc00; /* Yellow */
+        border-radius: 4px;
+        color: #333; /* Dark Gray */
     }
 
     button {
-      background-color: #ffd700; /* Golden Yellow */
-      color: #282c34; /* Light Black */
-      padding: 12px 20px;
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: background-color 0.3s ease;
-      border: 2px solid #ffd700; /* Golden Yellow */
-      margin-right: 10px;
+        background-color: #4caf50; /* Green */
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        border: 2px solid #ffcc00; /* Yellow */
     }
 
     button:hover {
-      background-color: #ffcc00; /* Darker Golden Yellow */
+        background-color: #45a049; /* Darker Green */
+    }
+
+    h2 {
+        color: #ffcc00; /* Yellow */
+    }
+
+    a {
+        color: #007bff; /* Blue */
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
     }
 
     table {
@@ -89,7 +93,7 @@
           
           <button type="button" onclick="MenuShow()">Show Menu Items</button>
           
-          <button type="button" onclick="FOODPRE.html">food detail</button>
+          <button type="button" onclick="AddtoCart()"><a href="FOODPRE.HTML">Add to Cart</a></button>
 
           <div id="menuDetailsContainer"></div>
         </div>
@@ -104,13 +108,7 @@
 	  myHeaders.append("SoapAction", "\"\"");
 	  myHeaders.append("Content-Type", "application/json");
 
-	  var raw = `<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
-	    <Body>
-	      <getMenuDetails xmlns="http://main">
-	        <menuID>${id}</menuID>
-	      </getMenuDetails>
-	    </Body>
-	  </Envelope>`;
+	  var raw = `<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/"> <Body> <getMenuDetails xmlns="http://main"> <menuID>${id}</menuID> </getMenuDetails> </Body> </Envelope>`;
 
 	  var requestOptions = {
 	    method: 'POST',

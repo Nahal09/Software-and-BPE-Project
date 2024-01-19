@@ -10,14 +10,14 @@
       <parameter name="className" value="main.MenuCreate"/>
       <parameter name="wsdlPortType" value="MenuCreate"/>
       <parameter name="typeMappingVersion" value="1.2"/>
-      <operation xmlns:operNS="http://main" xmlns:retNS="http://main" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="removeMenuItems" qname="operNS:removeMenuItems" returnQName="retNS:removeMenuItemsReturn" returnType="rtns:string" soapAction="">
-        <parameter xmlns:pns="http://main" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:menuID" type="tns:int"/>
-      </operation>
       <operation xmlns:operNS="http://main" xmlns:retNS="http://main" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="addMenuItems" qname="operNS:addMenuItems" returnQName="retNS:addMenuItemsReturn" returnType="rtns:string" soapAction="">
         <parameter xmlns:pns="http://main" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:menuID" type="tns:int"/>
         <parameter xmlns:pns="http://main" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:name" type="tns:string"/>
         <parameter xmlns:pns="http://main" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:price" type="tns:int"/>
         <parameter xmlns:pns="http://main" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:category" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://main" xmlns:retNS="http://main" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="removeMenuItems" qname="operNS:removeMenuItems" returnQName="retNS:removeMenuItemsReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://main" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:menuID" type="tns:int"/>
       </operation>
       <parameter name="allowedMethods" value="addMenuItems removeMenuItems"/>
 

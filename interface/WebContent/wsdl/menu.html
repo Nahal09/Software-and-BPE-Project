@@ -25,13 +25,6 @@
       text-align: center;
     }
 
-    label {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 14px;
-      color: #ffcc00; /* Golden Yellow */
-    }
-
     input, select {
       width: 100%;
       padding: 10px;
@@ -86,76 +79,52 @@
   </div>
 
   <script>
-  function AddItems()
-  {
-  	//const min = 1;
-  	//const max = 100;
-  	//const instanceID = min + Math.random() * (max - min);
-  	//localStorage['menuID'] = id;
-  	id = document.getElementById('menu').value
-  	Name = document.getElementById('name').value
-  	Price = document.getElementById('price').value
-  	Category = document.getElementById('category').value
-  	
-  	
-  	
-  	var myHeaders = new Headers();
-  	myHeaders.append("SoapAction", "\"\"");
-  	myHeaders.append("Content-Type", "application/json");
+    function AddItems() {
+      var id = document.getElementById('menu').value;
+      var Name = document.getElementById('name').value;
+      var Price = document.getElementById('price').value;
+      var Category = document.getElementById('category').value;
 
-  	var raw = `<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
-  	    <Body>
-          <addMenuItems xmlns="http://main">
-              <menuID>${id}</menuID>
-              <name>${Name}</name>
-              <price>${Price}</price>
-              <category>${Category}</category>
-          </addMenuItems>
-      </Body>
-  </Envelope>`
+      var myHeaders = new Headers();
+      myHeaders.append("SOAPAction", "addMenuItems"); // Replace with the correct SOAP action
+      myHeaders.append("Content-Type", "text/xml");
 
-  	var requestOptions = {
-  	  method: 'POST',
-  	  headers: myHeaders,
-  	  body: raw,
-  	  redirect: 'follow'
-  	};
+      var raw = `<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/"><Body><addMenuItems xmlns="http://main"><menuID>${id}</menuID><name>${Name}</name><price>${Price}</price><category>${Category}</category></addMenuItems></Body></Envelope>`;
 
-  	fetch("http://localhost:8080/Project/services/MenuCreate", requestOptions)
-  	  .then(response => response.text())
-  	  .then(result => console.log(result))
-  	  .catch(error => console.log('error', error));
-  }
-  function RemoveItems()
-  {
-  	//menuID = localStorage['menuID'];
-  	
-  	id = document.getElementById('menu').value
-  	
-  	var myHeaders = new Headers();
-  	myHeaders.append("SoapAction", "\"\"");
-  	myHeaders.append("Content-Type", "application/json");
+      var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+      };
 
-  	var raw = `<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
-  	    <Body>
-          <removeMenuItems xmlns="http://main">
-              <menuID>${id}</menuID>
-          </removeMenuItems>
-      </Body>
-  </Envelope>`
+      fetch("http://localhost:8080/Project/services/MenuCreate", requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.error('Fetch error:', error));
+    }
 
-  	var requestOptions = {
-  	  method: 'POST',
-  	  headers: myHeaders,
-  	  body: raw,
-  	  redirect: 'follow'
-  	};
+    function RemoveItems() {
+      var id = document.getElementById('menu').value;
 
-  	fetch("http://localhost:8080/Project/services/MenuCreate", requestOptions)
-  	  .then(response => response.text())
-  	  .then(result => console.log(result))
-  	  .catch(error => console.log('error', error));
-  }
+      var myHeaders = new Headers();
+      myHeaders.append("SOAPAction", "removeMenuItems"); // Replace with the correct SOAP action
+      myHeaders.append("Content-Type", "text/xml");
+
+      var raw = `<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/"><Body><removeMenuItems xmlns="http://main"><menuID>${id}</menuID></removeMenuItems></Body></Envelope>`;
+
+      var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+      };
+
+      fetch("http://localhost:8080/Project/services/MenuCreate", requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.error('Fetch error:', error));
+    }
   </script>
 </body>
 </html>

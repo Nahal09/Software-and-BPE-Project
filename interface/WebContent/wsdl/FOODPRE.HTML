@@ -4,60 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Food Preparation Form</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #000;
-            color: #fff;
-            margin: 0;
-            padding: 0;
-        }
+     <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #000;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
 
-        .container {
-            max-width: 600px;
-            margin: 50px auto;
-            background-color: #333;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-        }
+    div {
+        background-color: #333; /* Dark Gray */
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        width: 300px;
+        text-align: center;
+    }
 
-        form {
-            display: flex;
-            flex-direction: column;
-        }
+    label {
+        display: block;
+        margin-bottom: 8px;
+        color: #ffcc00; /* Yellow */
+    }
 
-        h1 {
-            color: #4caf50;
-            text-align: center;
-        }
+    input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 16px;
+        box-sizing: border-box;
+        border: 1px solid #ffcc00; /* Yellow */
+        border-radius: 4px;
+        color: #333; /* Dark Gray */
+    }
 
-        label {
-            margin-bottom: 8px;
-            color: #fff;
-        }
+    button {
+        background-color: #4caf50; /* Green */
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        border: 2px solid #ffcc00; /* Yellow */
+    }
 
-        input {
-            padding: 10px;
-            margin-bottom: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            background-color: #444;
-            color: #fff;
-        }
+    button:hover {
+        background-color: #45a049; /* Darker Green */
+    }
 
-        button {
-            background-color: #4caf50;
-            color: #fff;
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
+    h2 {
+        color: #ffcc00; /* Yellow */
+    }
 
-        button:hover {
-            background-color: #45a049;
-        }
+    a {
+        color: #ffffff; /* Blue */
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
     </style>
 </head>
 <body>
@@ -74,7 +84,7 @@
         <label for="status">Preparation Status:</label>
         <input type="text" id="status" required>
 
-        <button type="button" onclick="foodpreparation()">Submit</button>
+        <button type="button" onclick="foodpreparation()"><a href="deliveryManagement.html">Manage Food Order</a></button>
     </form>
 </div>
 
@@ -88,15 +98,7 @@
         myHeaders.append("SoapAction", "\"\"");
         myHeaders.append("Content-Type", "text/plain");
 
-        var raw = `<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
-            <Body>
-                <foodprep xmlns="http://main">
-                    <PrepID>${PrepId}</PrepID>
-                    <OrderID>${OrderId}</OrderID>
-                    <Status>${Status1}</Status>
-                </foodprep>
-            </Body>
-        </Envelope>`;
+        var raw = `<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/"> <Body> <foodprep xmlns="http://main"> <PrepID>${PrepId}</PrepID> <OrderID>${OrderId}</OrderID> <Status>${Status1}</Status> </foodprep> </Body> </Envelope>`;
 
         var requestOptions = {
             method: 'POST',

@@ -91,34 +91,41 @@
     <label for="Password">Password:</label>
     <input type="password" id="Password" name="Password" required>
 
-    <button type="button" onclick="login.html">Sign Up</button>
+    <button type="button" onclick="getsignup()">
+    <a href="login.html">Sign Up</a>
+</button>
 
     <br><br><br><br><br><br><br><br><br>
 </div>
 
-<div id="login" hidden="hidden">
-    <h2>Login</h2>
-    <label for="loginemail">Email:</label>
-    <input type="email" id="loginemail" name="loginemail" required>
-
-    <label for="loginpassword">Password:</label>
-    <input type="password" id="loginpassword" name="loginpassword" required>
-
-    <button type="button" onclick="getlogin()">Log In</button>
-
-    <div class="signup-link" onclick="getsignup()">Not a member? <a href="#">Signup now</a></div>
-</div>
-
 <script>
-    function getsignup() {
-        // Your signup function here
-        console.log('Signup clicked!');
-    }
 
-    function getlogin() {
-        // Your login function here
-        console.log('Login clicked!');
-    }
+function getsignup(){
+	var Name=document.getElementById('First Name').value;
+	var Last=document.getElementById('Last Name').value;
+	var Mail=document.getElementById('Email').value;
+	var Number=document.getElementById('Phone Number').value;
+	var location=document.getElementById('Address').value;
+	var pass=document.getElementById('Password').value;
+var myHeaders = new Headers();
+myHeaders.append("SOAPAction", "\"\"");
+myHeaders.append("Content-Type", "application/json");
+
+var raw = `<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/"> <Body><signup xmlns="http://main"><FirstName>${Name}</FirstName> <LastName>${Last}</LastName><email>${Mail}</email><phn>${Number}</phn><add>${location}</add><pswrd>${pass}</pswrd></signup> </Body></Envelope>`;
+console.log(raw);
+var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+
+fetch("http://localhost:8080/Project/services/Signup", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+}
+
 </script>
 </body>
 </html>
