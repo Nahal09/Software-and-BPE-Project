@@ -32,11 +32,11 @@
    <ns2:parameter qname="ns1:pswrd" type="xsd:string"/>
   </ns2:operation>
   <ns1:parameter name="allowedMethods" value="signup"/>
-  <ns1:parameter name="wsdlPortType" value="Signup"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
-  <ns1:parameter name="schemaQualified" value="http://main"/>
-  <ns1:parameter name="wsdlServicePort" value="Signup"/>
+  <ns1:parameter name="wsdlPortType" value="Signup"/>
   <ns1:parameter name="className" value="main.Signup"/>
+  <ns1:parameter name="wsdlServicePort" value="Signup"/>
+  <ns1:parameter name="schemaQualified" value="http://main"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://main"/>
   <ns1:parameter name="wsdlServiceElement" value="SignupService"/>
  </ns1:service>
@@ -90,11 +90,11 @@
    <ns1:parameter qname="ns5:pswrd" type="xsd:string"/>
   </ns1:operation>
   <ns1:parameter name="allowedMethods" value="login"/>
-  <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="Login"/>
-  <ns1:parameter name="className" value="main.Login"/>
-  <ns1:parameter name="wsdlServicePort" value="Login"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="schemaQualified" value="http://main"/>
+  <ns1:parameter name="wsdlServicePort" value="Login"/>
+  <ns1:parameter name="className" value="main.Login"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://main"/>
   <ns1:parameter name="wsdlServiceElement" value="LoginService"/>
  </ns1:service>
@@ -119,13 +119,27 @@
    <ns1:parameter qname="ns8:DeliveryStatus" type="xsd:string"/>
   </ns1:operation>
   <ns1:parameter name="allowedMethods" value="deliverymanagement"/>
-  <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="Management"/>
-  <ns1:parameter name="className" value="main.Management"/>
-  <ns1:parameter name="wsdlServicePort" value="Management"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="schemaQualified" value="http://main"/>
+  <ns1:parameter name="wsdlServicePort" value="Management"/>
+  <ns1:parameter name="className" value="main.Management"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://main"/>
   <ns1:parameter name="wsdlServiceElement" value="ManagementService"/>
+ </ns1:service>
+ <ns1:service name="LoginAdmin" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="adminlogin" qname="ns9:adminlogin" returnQName="ns9:adminloginReturn" returnType="xsd:string" soapAction="" xmlns:ns9="http://main" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns9:email" type="xsd:string"/>
+   <ns1:parameter qname="ns9:pswrd" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="adminlogin"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="LoginAdmin"/>
+  <ns1:parameter name="className" value="main.LoginAdmin"/>
+  <ns1:parameter name="wsdlServicePort" value="LoginAdmin"/>
+  <ns1:parameter name="schemaQualified" value="http://main"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://main"/>
+  <ns1:parameter name="wsdlServiceElement" value="LoginAdminService"/>
  </ns1:service>
  <ns1:transport name="http">
   <ns1:requestFlow>
