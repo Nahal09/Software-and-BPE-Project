@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delivery</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .delivery-form {
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #ffcc00; /* Yellow */
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+      border: 1px solid #ffcc00; /* Yellow */
+      border-radius: 4px;
+      color: #333; /* Dark Gray */
+    }
+
+    button {
+      background-color: #4caf50; /* Green */
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      border: 2px solid #ffcc00; /* Yellow */
+    }
+
+    button:hover {
+      background-color: #45a049; /* Darker Green */
+    }
+
+    h2 {
+      color: #ffcc00; /* Yellow */
+    }
+
+    a {
+      color: #ffffff; 
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+      background-color: #1e1e1e; /* Dark Gray */
+      color: #fff; /* White */
+    }
+
+    th, td {
+      border: 1px solid #ffd700; /* Golden Yellow */
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #282c34; /* Light Black */
+    }
+  </style>
+
+</head>
+<body>
+  <div id="DELIVERY">
+    <div style="text-align: center;">
+      <form>
+        <div class="delivery-form">
+          <label for="delivery">Delivery ID :</label>
+          <input type="text" id="delivery" name="delivery" required>
+          <button type="button" onclick="checkDeliveryDetails()">Check Delivery Details</button>
+          
+          <!-- Removed unnecessary onclick attribute -->
+          <button type="button"><a href="lastpg.html">OK</a></button>
+          
+          <div id="DeliveryDetailsContainer"></div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+  function checkDeliveryDetails() {
+	  var id = document.getElementById('delivery').value;
+
+	  
+	  var myHeaders = new Headers();
+	  myHeaders.append("SOAPAction", "\"\"");
+	  myHeaders.append("Content-Type", "text/plain");
+
+	  var raw = `<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/"> <Body> <getDeliveryDetails xmlns="http://main"> <deliveryId>${id}</deliveryId> </getDeliveryDetails> </Body> </Envelope>`;
+
+	  var requestOptions = {
+	    method: 'POST',
+	    headers: myHeaders,
+	    body: raw,
+	    redirect: 'follow'
+	  };
+
+	  fetch("http://localhost:8080/Project/services/Delivery", requestOptions)
+	    .then(response => response.text())
+	    .then(result => displayDeliveryDetails(result, id))  // Pass id as an argument
+	    .catch(error => console.log('error', error));
+	}
+
+    function displayDeliveryDetails(xmlString,id) {
+      try {
+        var parser = new DOMParser();
+        var xmlDoc = parser.parseFromString(xmlString, "text/xml");
+
+        var deliveryDetails = {
+          deliverId: xmlDoc.querySelector('deliverId')?.textContent,
+          orderId: xmlDoc.querySelector('orderId')?.textContent,
+          status: xmlDoc.querySelector('status')?.textContent,
+        };
+
+        var deliveryDetailsContainer = document.getElementById("DeliveryDetailsContainer");
+        deliveryDetailsContainer.innerHTML = ""; // Clear previous details
+
+        if (deliveryDetails.deliverId) {
+          var detailsTable = document.createElement("table");
+          detailsTable.innerHTML = "<tr><th>Delivery_ID</th><th>Order_ID</th><th>Delivery_Status</th></tr>";
+
+          var row = detailsTable.insertRow();
+          var cell1 = row.insertCell(0);
+          var cell2 = row.insertCell(1);
+          var cell3 = row.insertCell(2);
+
+          cell1.innerHTML = deliveryDetails.deliverId;
+          cell2.innerHTML = deliveryDetails.orderId;
+          cell3.innerHTML = deliveryDetails.status;
+
+          deliveryDetailsContainer.appendChild(detailsTable);
+        } else {
+          deliveryDetailsContainer.innerHTML = "Delivery Details not found with ID: " + id;
+        }
+      } catch (error) {
+        console.error('Error parsing XML:', error);
+      }
+    }
+  </script>
+</body>
+</html>
